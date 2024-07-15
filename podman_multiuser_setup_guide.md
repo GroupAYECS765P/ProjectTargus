@@ -5,22 +5,22 @@
 ### 1. 創建共享群組
 
 ```bash
-sudo groupadd container-users
+sudo groupadd podman-users
 ```
 
 ### 2. 創建共享存儲
 
 ```bash
 sudo mkdir /var/lib/shared-containers
-sudo chown :container-users /var/lib/shared-containers
+sudo chown :podman-users /var/lib/shared-containers
 sudo chmod 775 /var/lib/shared-containers
 ```
 
 ### 3. 設置 ACL
 
 ```bash
-sudo setfacl -R -m g:container-users:rwx /var/lib/shared-containers
-sudo setfacl -R -d -m g:container-users:rwx /var/lib/shared-containers
+sudo setfacl -R -m g:podman-users:rwx /var/lib/shared-containers
+sudo setfacl -R -d -m g:podman-users:rwx /var/lib/shared-containers
 ```
 
 ## II. 用戶配置
@@ -30,7 +30,7 @@ sudo setfacl -R -d -m g:container-users:rwx /var/lib/shared-containers
 ```bash
 sudo useradd -m -s /bin/bash sysmon
 sudo passwd sysmon
-sudo usermod -aG container-users sysmon
+sudo usermod -aG podman-users sysmon
 ```
 
 ### 2. 配置 Podman 存儲
